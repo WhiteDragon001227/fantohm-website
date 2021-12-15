@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en"><head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-HHRBGSB44D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-HHRBGSB44D');
+</script>
+
+	<meta charset="utf-8">
+	<link rel="icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+	<link rel="apple-touch-icon" href="logo192.png">
+	<title>Fantohm</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Montserrat:wght@300;400;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link href="styles.css" type="text/css" rel="stylesheet">
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+
+
+</head>
+<body>
+<section class="price" v-scope="Values({ initialCount: 1 })" @mounted="mounted" v-cloak>
+
+      <div class="row text-on-brand text-center d-flex justify-content-center">
+        <div class="col-md-2 values value-1">
+          <div class="rounded py-2 bg-brand">
+            <h3 class="mb-0">${{price}}</h3>
+            <p class="lead mb-0">Price</p>
+          </div>
+        </div>
+        <div class="col-md-2 values value-2">
+          <div class="rounded py-2 bg-brand">
+            <h3 class="mb-0">{{circulating_supply}}</h3>
+            <p class="lead mb-0">Circulating supply</p>
+          </div>
+        </div>
+        <div class="col-md-2 values value-3">
+          <div class="rounded py-2 bg-brand">
+            <h3 class="mb-0">${{market_cap}}</h3>
+            <p class="lead mb-0">Market cap</p>
+          </div>
+        </div>
+        <div class="col-md-2 values value-4">
+          <div class="rounded py-2 bg-brand">
+            <h3 class="mb-0">${{stakingTVL}}</h3>
+            <p class="lead mb-0">Staking TVL</p>
+          </div>
+        </div>
+        <div class="col-md-2 values value-5">
+          <div class="rounded py-2 bg-brand">
+            <h3 class="mb-0">{{APY}}%</h3>
+            <p class="lead mb-0">APY</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+<section class="header">
+	<div class="container">
+
+		<div class="row">
+			<div class="col-12">
+				<ul>
+				<li><a href="https://discord.com/invite/6x2wHHVNpC" target="_blank"><span class="iconify" data-icon="akar-icons:discord-fill"></span></a></li>
+				<li><a href="https://t.me/fantohm" target="_blank"><span class="iconify" data-icon="bx:bxl-telegram"></span></a></li>
+				<li><a href="https://twitter.com/FantohmDAO" target="_blank"><span class="iconify" data-icon="akar-icons:twitter-fill"></span></a></li>
+				<li><a href="https://github.com/fantohm-dev" target="_blank"><span class="iconify" data-icon="akar-icons:github-fill"></span></span></a></li>
+				<li><a href="https://fantohm.gitbook.io/documentation/" target="_blank"><span class="iconify" data-icon="simple-icons:gitbook"></span></span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="hero">
+	<div class="container">
+
+			<div class="logo">
+				<img src="logo.png" />
+			</div>
+			<div>
+			<h2>The Decentralized Reserve Currency</h2>
+			<p>Fantohm is building a community-owned decentralized financial infrastructure to bring more stability and transparency for the world.</p>
+			<p>
+				<a href="https://app.fantohm.com/" class="button">Enter App</a> 	<a href="https://www.fantohm.com/fantohm-brandbook.pdf" class="button" target="_blank">Brandbook</a>
+			</p>
+
+		</div>
+	</div>
+</section>
+
+
+<section class="how-it-works">
+	<div class="container">
+		<div class="row row-wrap align-items">
+			<div class="col-12" style="text-align:center;">
+				<h2 class="big">How Fantohm works</h2>
+			</div>
+			<div class="col-6 order-1 align-middle">
+				<div class="content align-middle">
+					<h3><span>1</span>Treasury Revenue</h3>
+					<h2>Bonds & LP fees</h2>
+					<p>Bond sales and LP Fees increase Fantohm's Treasury Revenue and lock in liquidity and help control FHM supply</p>
+				</div>
+
+			</div>
+			<div class="col-6 order-2 content-img"><img src="ghost1.png" /></div>
+			<div class="col-6 order-4">
+				<div class="content">
+					<h3><span>2</span>Treasury Growth</h3>
+					<h2>Fantohm's Treasury</h2>
+					<p>Treasury inflow is used to increase Fantohm's Treasury Balance and back outstanding FHM tokens and regulate staking APY</p>
+				</div>
+			</div>
+			<div class="col-6 order-3 content-img"><img src="ghost2.png" /></div>
+			<div class="col-6 order-5">
+				<div class="content">
+					<h3><span>3</span>Staking Rewards</h3>
+					<h2>FHM Token</h2>
+					<p>Compounds yields automatically through a treasury backed coin with intrinsic value</p>
+				</div>
+			</div>
+			<div class="col-6 order-6 content-img"><img src="chost3.png" /></div>
+		</div>
+	</div>
+</section>
+
+
+<section class="community">
+	<div class="container">
+
+		<div class="row row-wrap join">
+			<div class="col-12" style="text-align:center;">
+				<h2 class="big">Join our community</h2>
+			</div>
+			<div class="col-12 social">
+				<a href="https://discord.com/invite/6x2wHHVNpC" target="_blank"><span class="iconify" data-icon="akar-icons:discord-fill"></span></a>
+				<a href="https://t.me/fantohm" target="_blank"><span class="iconify" data-icon="bx:bxl-telegram"></span></a>
+				<a href="https://twitter.com/FantohmDAO" target="_blank"><span class="iconify" data-icon="akar-icons:twitter-fill"></span></a>
+				<a href="https://github.com/fantohm-dev" target="_blank"><span class="iconify" data-icon="akar-icons:github-fill"></span></span></a>
+				<a href="https://fantohm.gitbook.io/documentation/" target="_blank"><span class="iconify" data-icon="simple-icons:gitbook"></span></span></a>
+			</div>
+		</div>
+	</div>
+</section>
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+<script type="module">
+import { createApp } from 'https://unpkg.com/petite-vue@0.3.0?module'
+
+const contracts = {
+  sFantohm: null,
+  mim_fhm_lp_bond: null,
+  CirculatingSupplyContract: null,
+  StakingContract: null,
+};
+
+async function loadContracts() {
+  let loadContract = function(name) {
+    return new Promise(async (resolve, reject) => {
+      let url = './abi/' + name + '.json';
+      let obj = await (await fetch(url)).json();
+      contracts[name] = obj;
+      resolve();
+    });
+  };
+  await Promise.all(Object.keys(contracts).map(loadContract));
+}
+
+// provider
+const networkID = 250;
+const rpcUrl = 'https://rpc.ftm.tools/'
+const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+
+// addresses
+const addresses = {
+  [networkID]: {
+    SFHM_ADDRESS: '0x5E983ff70DE345de15DbDCf0529640F14446cDfa',
+    CIRCULATING_SUPPLY_ADDRESS: '0x59EC309001Ec92879790dbdd94d9180B8bCAe908',
+    STAKING_ADDRESS: '0xcb9297425C889A7CbBaa5d3DB97bAb4Ea54829c2',
+  },
+};
+const fhm_mim_lp_reserve_addr = '0x46622913cE40c54Ec14857f72968d4BAAF963947';
+
+// functions
+async function getMarketPrice() {
+  const pairContract = new ethers.Contract(
+    fhm_mim_lp_reserve_addr,
+    contracts.mim_fhm_lp_bond.abi,
+    provider
+  );
+  const reserves = await pairContract.getReserves();
+  const marketPrice = reserves[0] / reserves[1];
+  // marketPrice: marketPrice / Math.pow(10, 9)
+  return marketPrice;
+}
+
+async function getStakingTVL() {
+  const sohmMainContract = new ethers.Contract(
+    addresses[networkID].SFHM_ADDRESS, contracts.sFantohm.abi, provider
+  );
+  const originalStakingCircSupply = await sohmMainContract.circulatingSupply();
+  const daoSohmBalance = await sohmMainContract.balanceOf(addresses[networkID].SFHM_ADDRESS);
+  const marketPrice = await getMarketPrice();
+  let stakingCircSupply = originalStakingCircSupply - daoSohmBalance;
+  let stakingTVL = stakingCircSupply * marketPrice / Math.pow(10, 9);
+  return stakingTVL;
+}
+
+async function getStakingAPY() {
+  const sohmMainContract = new ethers.Contract(
+    addresses[networkID].SFHM_ADDRESS,
+    contracts.sFantohm.abi,
+    provider
+  );
+  const originalStakingCircSupply = await sohmMainContract.circulatingSupply();
+  const daoSohmBalance = await sohmMainContract.balanceOf(addresses[networkID].SFHM_ADDRESS);
+  let stakingCircSupply = originalStakingCircSupply - daoSohmBalance;
+  //
+  const stakingContract = new ethers.Contract(
+    addresses[networkID].STAKING_ADDRESS,
+    contracts.StakingContract.abi,
+    provider
+  );
+  const epoch = await stakingContract.epoch();
+  const stakingReward = epoch.distribute * (stakingCircSupply / originalStakingCircSupply);
+  const stakingRebase = stakingReward / originalStakingCircSupply;
+  const fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
+  const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
+  return stakingAPY;
+}
+
+async function getCirculatingSupply() {
+  const sohmMainContract = new ethers.Contract(
+    addresses[networkID].SFHM_ADDRESS,
+    contracts.sFantohm.abi,
+    provider
+  );
+  const circSupplyContract = new ethers.Contract(
+    addresses[networkID].CIRCULATING_SUPPLY_ADDRESS,
+    contracts.CirculatingSupplyContract.abi,
+    provider
+  );
+  const daoSohmBalance = await sohmMainContract.balanceOf(addresses[networkID].SFHM_ADDRESS);
+  let circSupply = await circSupplyContract.OHMCirculatingSupply() / Math.pow(10, 9); 
+  circSupply = circSupply - daoSohmBalance / Math.pow(10, 9);
+  return circSupply;
+}
+
+async function getMarketCap() {
+  let cs = await getCirculatingSupply();
+  let market_price = await getMarketPrice();
+  return cs * market_price;
+}
+
+function formatDigits(str, decimalPlaces = 2){
+  const arr = (''+str).split('.');
+  const fraction = arr[1] .substr(0, decimalPlaces);
+  return arr[0] + (fraction ? '.' + fraction : '');
+}
+
+function formatBigNumber(number, decimalPlaces = 2) {
+  return number.toLocaleString('en-US', {maximumFractionDigits: decimalPlaces}); // "1,234,567,890"
+}
+
+// components
+function Values(props) {
+  return {
+    stakingTVL: null,
+    price: null,
+    circulating_supply: null,
+    APY: null,
+    market_cap: null,
+    async mounted() {
+      await loadContracts();
+      let digits = 9;
+      this.stakingTVL = formatBigNumber(
+        parseInt(await getStakingTVL()) / Math.pow(10, digits)
+      );
+      this.price = formatDigits(
+        ethers.utils.formatUnits(parseInt(await getMarketPrice()), digits)
+      );
+      this.circulating_supply = formatBigNumber(parseInt(await getCirculatingSupply()));
+      this.market_cap = formatBigNumber(
+        parseInt(await getMarketCap()) / Math.pow(10, digits),
+        0
+      );
+      this.APY = formatBigNumber(
+        await getStakingAPY() * 100
+      );
+    },
+  }
+}
+
+createApp({
+  Values
+}).mount()
+</script>
+
+</body>
+</html>
