@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-2 values value-2">
           <div class="rounded py-2 bg-brand">
-            <h3 class="mb-0">{{circulating_supply}}</h3>
+            <h3 class="mb-0">{{circulating_supply || '-'}}</h3>
             <p class="lead mb-0">Circulating supply</p>
           </div>
         </div>
@@ -154,149 +154,211 @@
 <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
 <script type="module">
 import { createApp } from 'https://unpkg.com/petite-vue@0.3.0?module'
+// for questions about the code: ask @oppasam
+
+const Fantom = 250;
+const Moonriver = 1285;
+const networks = {
+    [Fantom]: {
+        SOHM_ADDRESS: "0x5E983ff70DE345de15DbDCf0529640F14446cDfa",
+        STAKING_ADDRESS: "0xcb9297425C889A7CbBaa5d3DB97bAb4Ea54829c2",
+        MARKET_PRICE_LP_ADDRESS: "0x46622913cE40c54Ec14857f72968d4BAAF963947",
+        CIRCULATING_SUPPLY_ADDRESS: "0x59EC309001Ec92879790dbdd94d9180B8bCAe908",
+        DAO_ADDRESS: "0xD4aC626A1F87b5955f78FF86237DB055e62D43a0",
+        rpcUrl: 'https://rpc.ftm.tools',
+        epochBlock: 20187783,
+        blocktime: 0.867,
+        epochInterval: 28800,
+        liquidityPoolReserveDecimals: {
+            token0Decimals: 18,
+            token1Decimals: 9,
+        },
+    },
+    [Moonriver]: {
+        SOHM_ADDRESS: "0x1888BB30f9EdD63b265942F3E3D061F186f38079",
+        STAKING_ADDRESS: "0xF5C7D63C5Fc0aD4b7Cef7d8904239860725Ebc87",
+        MARKET_PRICE_LP_ADDRESS: "0x0b6116bb2926d996cdeba9e1a79e44324b0401c9",
+        CIRCULATING_SUPPLY_ADDRESS: "0x9DC084Fd82860cDb4ED2b2BF59F1076F47B03Bd6",
+        DAO_ADDRESS: "0xE3CD5475f18a97D3563307B4e1A6467470237927",
+        rpcUrl: 'https://rpc.moonriver.moonbeam.network',
+        blocktime: 12.8,
+        epochBlock: 979500,
+        epochInterval: 1960,
+        liquidityPoolReserveDecimals: {
+            token0Decimals: 6,
+            token1Decimals: 9,
+        },
+    },
+};
+
+class Lazy {
+    constructor(initializer) {
+        this.instance = null;
+        this.initializer = initializer;
+    };
+    value() {
+        if (this.instance == null) {
+            this.instance = this.initializer();
+        }
+        return this.instance;
+    }
+}
+
+async function getMarketPrice(networkID, provider) {
+    const marketPriceReserveAddress = networks[networkID].MARKET_PRICE_LP_ADDRESS;
+    const pairContract = new ethers.Contract(marketPriceReserveAddress, contracts.PairContract, provider);
+    const reserves = await pairContract.getReserves();
+    const reserveDecimals = networks[networkID].liquidityPoolReserveDecimals;
+    const marketPrice = (reserves[0] / Math.pow(10, reserveDecimals.token0Decimals)) / (reserves[1] / Math.pow(10, reserveDecimals.token1Decimals));
+    return marketPrice;
+}
+
+function NetworkDetails(networkID, details, provider) {
+    var _circSupplyContract = new ethers.Contract(
+        details.CIRCULATING_SUPPLY_ADDRESS,
+        contracts.CirculatingSupplyContract,
+        provider
+    );
+    var _sfhmMainContract = new ethers.Contract(
+        details.SOHM_ADDRESS,
+        contracts.sOHMv2,
+        provider
+    );
+    // var _fhmContract = new ethers.Contract(
+    //     addresses.OHM_ADDRESS,
+    //     sOHM,
+    //     provider
+    // );
+    var _stakingContract = new ethers.Contract(
+        details.STAKING_ADDRESS,
+        contracts.OlympusStakingv2,
+        provider
+    );
+
+    var getOriginalStakingCircSupply = async () => {
+        // _originalStakingCircSupply
+        return await _sfhmMainContract.circulatingSupply() / Math.pow(10, 9);
+    };
+    var getStakingCircSupply = async () => {
+        const daoSfhmBalance = new Lazy(async () => await _sfhmMainContract.balanceOf(details.DAO_ADDRESS) / Math.pow(10, 9));
+        // _staking_cs
+        return (await this._originalStakingCircSupply) - (await daoSfhmBalance.value());
+    };
+
+    var getTVL = async () => {
+        // _stakingTVL
+        return (await this._staking_cs) * (await this.price.value());
+    };
+
+    var getAPY = async () => {
+        const epoch = new Lazy(async () => await _stakingContract.epoch());
+        const distribute = new Lazy(async () => (await epoch.value()).distribute / Math.pow(10, 9));
+        //
+        this.stakingRewardFHM = new Lazy(async () => (await distribute.value()) * (await this._staking_cs) / (await this._originalStakingCircSupply));
+        this.stakingRebase = new Lazy(async () => await this.stakingRewardFHM.value() / await this._originalStakingCircSupply);
+        this.secondsPerEpoch = new Lazy(async () => details.blocktime * details.epochInterval);
+        // this._stakingAPY
+        const rebasesPerDay = 24 * 60 * 60 / await this.secondsPerEpoch.value();
+        const stakingRebase = await this.stakingRebase.value();
+        return Math.pow(1 + stakingRebase, 365 * rebasesPerDay) - 1;
+        //
+        return new Lazy(async () => {
+            const rebasesPerDay = 24 * 60 * 60 / await this.secondsPerEpoch;
+            const stakingRebase = await this.stakingRebase;
+            return Math.pow(1 + stakingRebase, 365 * rebasesPerDay) - 1;
+        });
+    };
+
+    this.price = new Lazy(async () => await getMarketPrice(networkID, provider));
+    this.cs = new Lazy(async () => await _circSupplyContract.OHMCirculatingSupply() / Math.pow(10, 9));
+    this.mc = new Lazy(async () => (await this.price.value()) * (await this.cs.value()));
+    this._originalStakingCircSupply = getOriginalStakingCircSupply();
+    this._staking_cs = getStakingCircSupply();
+    this.tvl = new Lazy(async () => await getTVL());
+    this.apy = new Lazy(async () => await getAPY());
+}
+
+async function Global() {
+    let networkDetailMap = {};
+    Object.keys(networks).forEach((networkID) => {
+        let details = networks[networkID];
+        let provider = new ethers.providers.JsonRpcProvider(details.rpcUrl);
+        networkDetailMap[networkID] = new NetworkDetails(networkID, details, provider);
+    });
+
+    let networkIDs = Object.keys(networks);
+    const marketPrice = (await 
+        networkDetailMap[networkIDs[0]].price.value()
+    );
+    const globalCircSupply = (await Promise.all(networkIDs.map(networkID =>
+        networkDetailMap[networkID].cs.value()
+    ))).reduce((sum, a) => sum + a, 0);
+    const globalMarketCap = (await Promise.all(networkIDs.map(networkID =>
+        networkDetailMap[networkID].mc.value()
+    ))).reduce((sum, a) => sum + a, 0);
+    const globalStakingTVL = (await Promise.all(networkIDs.map(networkID =>
+        networkDetailMap[networkID].tvl.value()
+    ))).reduce((sum, a) => sum + a, 0);
+    const globalStakingAPY = (await Promise.all(networkIDs.map(networkID =>
+        networkDetailMap[networkID].apy.value()
+    ))).reduce((sum, a) => sum + a * (1 / networkIDs.length), 0);
+
+    return {
+        marketPrice: marketPrice,
+        globalCircSupply: globalCircSupply,
+        globalMarketCap: globalMarketCap,
+        globalStakingTVL: globalStakingTVL,
+        globalStakingAPY: globalStakingAPY,
+    };
+}
 
 const contracts = {
-  sFantohm: null,
-  mim_fhm_lp_bond: null,
-  CirculatingSupplyContract: null,
-  StakingContract: null,
+    sOHMv2: null,
+    PairContract: null,
+    OlympusStakingv2: null,
+    CirculatingSupplyContract: null,
 };
 
 async function loadContracts() {
-  let loadContract = function(name) {
-    return new Promise(async (resolve, reject) => {
-      let url = './abi/' + name + '.json';
-      let obj = await (await fetch(url)).json();
-      contracts[name] = obj;
-      resolve();
-    });
-  };
-  await Promise.all(Object.keys(contracts).map(loadContract));
-}
-
-// provider
-const networkID = 250;
-const rpcUrl = 'https://rpc.ftm.tools/'
-const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
-
-// addresses
-const addresses = {
-  [networkID]: {
-    SFHM_ADDRESS: '0x5E983ff70DE345de15DbDCf0529640F14446cDfa',
-    CIRCULATING_SUPPLY_ADDRESS: '0x59EC309001Ec92879790dbdd94d9180B8bCAe908',
-    STAKING_ADDRESS: '0xcb9297425C889A7CbBaa5d3DB97bAb4Ea54829c2',
-  },
-};
-const fhm_mim_lp_reserve_addr = '0x46622913cE40c54Ec14857f72968d4BAAF963947';
-
-// functions
-async function getMarketPrice() {
-  const pairContract = new ethers.Contract(
-    fhm_mim_lp_reserve_addr,
-    contracts.mim_fhm_lp_bond.abi,
-    provider
-  );
-  const reserves = await pairContract.getReserves();
-  const marketPrice = reserves[0] / reserves[1];
-  // marketPrice: marketPrice / Math.pow(10, 9)
-  return marketPrice;
-}
-
-async function getStakingTVL() {
-  const sohmMainContract = new ethers.Contract(
-    addresses[networkID].SFHM_ADDRESS, contracts.sFantohm.abi, provider
-  );
-  const originalStakingCircSupply = await sohmMainContract.circulatingSupply();
-  const daoSohmBalance = await sohmMainContract.balanceOf(addresses[networkID].SFHM_ADDRESS);
-  const marketPrice = await getMarketPrice();
-  let stakingCircSupply = originalStakingCircSupply - daoSohmBalance;
-  let stakingTVL = stakingCircSupply * marketPrice / Math.pow(10, 9);
-  return stakingTVL;
-}
-
-async function getStakingAPY() {
-  const sohmMainContract = new ethers.Contract(
-    addresses[networkID].SFHM_ADDRESS,
-    contracts.sFantohm.abi,
-    provider
-  );
-  const originalStakingCircSupply = await sohmMainContract.circulatingSupply();
-  const daoSohmBalance = await sohmMainContract.balanceOf(addresses[networkID].SFHM_ADDRESS);
-  let stakingCircSupply = originalStakingCircSupply - daoSohmBalance;
-  //
-  const stakingContract = new ethers.Contract(
-    addresses[networkID].STAKING_ADDRESS,
-    contracts.StakingContract.abi,
-    provider
-  );
-  const epoch = await stakingContract.epoch();
-  const stakingReward = epoch.distribute * (stakingCircSupply / originalStakingCircSupply);
-  const stakingRebase = stakingReward / originalStakingCircSupply;
-  const fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
-  const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
-  return stakingAPY;
-}
-
-async function getCirculatingSupply() {
-  const sohmMainContract = new ethers.Contract(
-    addresses[networkID].SFHM_ADDRESS,
-    contracts.sFantohm.abi,
-    provider
-  );
-  const circSupplyContract = new ethers.Contract(
-    addresses[networkID].CIRCULATING_SUPPLY_ADDRESS,
-    contracts.CirculatingSupplyContract.abi,
-    provider
-  );
-  const daoSohmBalance = await sohmMainContract.balanceOf(addresses[networkID].SFHM_ADDRESS);
-  let circSupply = await circSupplyContract.OHMCirculatingSupply() / Math.pow(10, 9); 
-  circSupply = circSupply - daoSohmBalance / Math.pow(10, 9);
-  return circSupply;
-}
-
-async function getMarketCap() {
-  let cs = await getCirculatingSupply();
-  let market_price = await getMarketPrice();
-  return cs * market_price;
+    let loadContract = function(name) {
+        return new Promise(async (resolve, reject) => {
+            let url = './abi/' + name + '.json';
+            let obj = await (await fetch(url)).json();
+            contracts[name] = obj.abi;
+            resolve();
+        });
+    };
+    await Promise.all(Object.keys(contracts).map(loadContract));
 }
 
 function formatDigits(str, decimalPlaces = 2){
-  const arr = (''+str).split('.');
-  const fraction = arr[1] .substr(0, decimalPlaces);
-  return arr[0] + (fraction ? '.' + fraction : '');
+    const arr = (''+str).split('.');
+    const fraction = arr[1] .substr(0, decimalPlaces);
+    return arr[0] + (fraction ? '.' + fraction : '');
 }
 
 function formatBigNumber(number, decimalPlaces = 2) {
-  return number.toLocaleString('en-US', {maximumFractionDigits: decimalPlaces}); // "1,234,567,890"
+    return number.toLocaleString('en-US', {maximumFractionDigits: decimalPlaces}); // "1,234,567,890"
 }
 
 // components
 function Values(props) {
-  return {
-    stakingTVL: null,
-    price: null,
-    circulating_supply: null,
-    APY: null,
-    market_cap: null,
-    async mounted() {
-      await loadContracts();
-      let digits = 9;
-      this.stakingTVL = formatBigNumber(
-        parseInt(await getStakingTVL()) / Math.pow(10, digits)
-      );
-      this.price = formatDigits(
-        ethers.utils.formatUnits(parseInt(await getMarketPrice()), digits)
-      );
-      this.circulating_supply = formatBigNumber(parseInt(await getCirculatingSupply()));
-      this.market_cap = formatBigNumber(
-        parseInt(await getMarketCap()) / Math.pow(10, digits),
-        0
-      );
-      this.APY = formatBigNumber(
-        await getStakingAPY() * 100
-      );
-    },
-  }
+    return {
+        stakingTVL: null,
+        price: null,
+        circulating_supply: null,
+        APY: null,
+        market_cap: null,
+        async mounted() {
+            await loadContracts();
+            let result = await Global();
+            this.stakingTVL = formatBigNumber(result.globalStakingTVL, 0);
+            this.price = formatBigNumber(result.marketPrice);
+            this.circulating_supply = formatBigNumber(parseInt(result.globalCircSupply));
+            this.market_cap = formatBigNumber(parseInt(result.globalMarketCap), 0);
+            this.APY = formatBigNumber(result.globalStakingAPY * 100, 0);
+        },
+    }
 }
 
 createApp({
