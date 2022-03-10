@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head>
+
+
+	<meta charset="utf-8">
+	<link rel="icon" href="favicon.ico">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+	<link rel="apple-touch-icon" href="logo192.png">
+	<title>The FantOHM DAO Ecosystem</title>
+  <meta name="description" content="FantOHM DAO is an innovative multi-chain decentralized Reserve and Revenue Protocol with the mission of overcoming ever-increasing inflation and the limitations of traditional finance while generate a continuous stream of income for its investors.">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;900&display=swap" rel="stylesheet">
+
+
+<meta property="og:image" content="og.jpg" />
+
+	<link href="test.scss" type="text/css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.4.1/pixi.min.js" crossorigin="anonymous"></script>
+<script src="https://yoshi.exchange/widget.js" async></script>
+</head>
+<body>
+
+<style>
+#canvas {
+  position: fixed;
+  bottom: -10px;
+  left: 50%;
+  transform:translateX(-50%);
+}
+body {
+	background:url(test-back.png) bottom center;
+	margin:0;
+	padding:0;
+	height:100vh;
+}
+html {margin:0;padding:0;}
+.back-bottom {
+	position:fixed;
+	bottom:0;
+	left:0;
+	right:0;
+	height:195px;
+	overflow:hidden;
+}
+</style>
+
+<!-- PARTICLE SYSTEM -->
+
+<div class="back-bottom">
+<canvas id="canvas"></canvas>
+</div>
+<div id="#yoshi-widget"></div>
+  <script>
+    const configs = {
+      isDisableLogo: false,
+      isDisableDex: false, 
+      fromContractAddress: "0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E", 
+      toContractAddress: "0xfa1FBb8Ef55A4855E5688C0eE13aC3f202486286",
+      blockchainId: 250,
+    };
+    function launchYoshi() {
+      let  widget = new YoshiWidget(configs)
+      widget.render()
+    }
+    window.onload = function() {
+        window.localStorage.clear()
+        launchYoshi()
+    }
+    
+  </script>
+<script>
+
+
+var baseUrl = "";
+
+var vw = 1920;
+var vh = 195;
+
+var app = new PIXI.Application(vw, vh, {
+  view: document.getElementById("canvas")
+});
+
+var loader = new PIXI.loaders.Loader(baseUrl)
+  .add("displacementMap", "displacementmap2.png")
+  .add("rocks", "test.jpg")
+  .load(init);
+
+function init(loader, resources) {
+  
+  var container = new PIXI.Container();
+  var background = new PIXI.Sprite(resources.rocks.texture);
+  var displacementSprite = new PIXI.Sprite(resources.displacementMap.texture);
+  var displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+    
+  
+  
+  container.filterArea = new PIXI.Rectangle(0, 0, vw, vh);
+  container.filters = [displacementFilter];
+  displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+  
+  container.position.set(-10);  
+  container.addChild(background);
+  container.addChild(displacementSprite);
+  app.stage.addChild(container);
+    
+  TweenMax.to(displacementSprite, 5, {
+    ease: Linear.easeNone,
+    repeat: -1,
+    x: 512,
+    y: 512
+  });
+}
+
+</script>
+
+</body>
+</html>

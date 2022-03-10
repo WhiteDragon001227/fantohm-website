@@ -1,0 +1,7 @@
+User-Agent: *
+Sitemap: https://www.fantohm.com/sitemap.xml
+Disallow: /media/forms
+
+User-Agent: Yandex
+Sitemap: https://www.fantohm.com/sitemap.xml
+Host: www.fantohm.com

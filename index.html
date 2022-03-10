@@ -1,45 +1,245 @@
 <!doctype html>
 <html lang="en"><head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-HHRBGSB44D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-HHRBGSB44D');
-</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NT9XP24');</script>
+<!-- End Google Tag Manager -->
 
 	<meta charset="utf-8">
 	<link rel="icon" href="favicon.ico">
 	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
 	<link rel="apple-touch-icon" href="logo192.png">
-	<title>Fantohm</title>
+	<title>The FantOHM DAO Ecosystem</title>
+  <meta name="description" content="FantOHM DAO is an innovative multi-chain decentralized Reserve and Revenue Protocol with the mission of overcoming ever-increasing inflation and the limitations of traditional finance while generate a continuous stream of income for its investors.">
+  <link rel="canonical" href="https://www.fantohm.com" />
+  
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caesar+Dressing&family=Montserrat:wght@300;400;900&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-	<link href="styles.css" type="text/css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;900&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+	<link href="theme.css" type="text/css" rel="stylesheet">
+<meta property="og:image" content="og.jpg" />
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+<script defer src="chain_fade.js"></script>
 
+<script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script defer src="https://code.iconify.design/1/1.0.3/iconify.min.js"></script>
+<script>
+
+// Firefox 1.0+
+var isFirefox = typeof InstallTrigger !== 'undefined';
+var output = isFirefox;
+
+
+$(document).ready(function() {
+
+$("body").addClass("moz-"+output);
+$('.slider-for').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  dots: false,
+  arrows: true,
+  autoplay: true,
+  autoplaySpeed: 7000,
+  fade: true,
+  asNavFor: '.slider-nav'
+});
+$('.slider-nav').slick({
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  asNavFor: '.slider-for',
+  autoplay:false,
+  dots: false,
+  centerMode: false,
+  focusOnSelect: true,
+  accessibility: true,
+  draggable: false
+});
+
+
+
+
+  var pixs = $(document).scrollTop()
+    pixs = pixs / 100;
+    $(".video").css({"-webkit-filter": "blur("+pixs+"px)","filter": "blur("+pixs+"px)" });
+
+var fadeStart=100 // 100px scroll or less will equiv to 1 opacity
+    ,fadeUntil=1000 // 200px scroll or more will equiv to 0 opacity
+    ,fading = $('.video');
+
+var offset = $(document).scrollTop()
+        ,opacity=0.35
+    ;
+    if( offset<=fadeStart ){
+        opacity=1;
+    }else if( offset<=fadeUntil ){
+        opacity=1-offset/fadeUntil+0.35;
+    }
+    fading.css('opacity',opacity);
+
+$(window).on('scroll', function () {
+    var pixs = $(document).scrollTop()
+    pixs = pixs / 100;
+    $(".video").css({"-webkit-filter": "blur("+pixs+"px)","filter": "blur("+pixs+"px)" });
+    var offset = $(document).scrollTop()
+        ,opacity=0.35
+    ;
+    if( offset<=fadeStart ){
+        opacity=1;
+    }else if( offset<=fadeUntil ){
+        opacity=1-offset/fadeUntil+0.35;
+    }
+    fading.css('opacity',opacity);
+});
+$(".openNav").on("click", function() {
+  $(".nav-blank").fadeToggle("slow");
+  $(this).toggleClass("opened");
+})
+
+$(".navigation ul li a").on("click", function() {
+  $(".nav-blank").fadeToggle("slow");
+  $(".openNav").removeClass("opened");
+});
+
+$(".req").on("click", function(e) {
+  e.preventDefault();
+  $(this).parents(".box").next(".job-wrap").fadeIn("slow");
+})
+
+
+
+
+$.fn.isOnScreen = function(){
+
+    var win = $(window);
+
+    var viewport = {
+        top : win.scrollTop()-400,
+        left : win.scrollLeft()
+    };
+    viewport.right = viewport.left + win.width();
+    viewport.bottom = viewport.top + win.height();
+
+    var bounds = this.offset();
+    bounds.right = bounds.left + this.outerWidth();
+    bounds.bottom = bounds.top + this.outerHeight();
+
+    return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
+
+};
+
+$(".hero .container").hide();
+setTimeout(function() {
+  $(".hero .container").fadeIn("slow");
+},1500);
+
+setTimeout(function() {
+  $(".video").fadeIn("slow");
+  $('.values').chainFade();
+},1000)
+
+if ($('.boxes').isOnScreen()) {
+  $('.box').addClass("fadeInDown");
+}
+if ($('.hero').isOnScreen()) {
+  setTimeout(function() {
+  $('.hero').fadeIn().addClass("fadeInDown");
+  },1500); 
+}
+if ($('.how-it-works').isOnScreen()) {
+  $('.how-it-works').addClass("fadeInDown");
+}
+if ($('.sec-area').isOnScreen()) {
+  $('.sec').addClass("fadeInDown");
+}
+if ($('.career').isOnScreen()) {
+  $('.box').addClass("fadeInDown");
+}
+if ($('.roadmap').isOnScreen()) {
+  $('.roadmap').addClass("fadeInDown");
+}
+$(window).scroll(function(){
+        if ($('.boxes').isOnScreen()) {
+              $('.box').addClass("fadeInDown");
+        }
+        if ($('.hero').isOnScreen()) {
+          $('.hero').addClass("fadeInDown");
+        }
+        if ($('.roadmap').isOnScreen()) {
+  $('.roadmap').addClass("fadeInDown");
+}
+        if ($('.how-it-works').isOnScreen()) {
+              $('.how-it-works').addClass("fadeInDown");
+        }
+        if ($('.sec-area').isOnScreen()) {
+              $('.sec').addClass("fadeInDown");
+        }
+        if ($('.career').isOnScreen()) {
+              $('.box').addClass("fadeInDown");
+        }
+    });
+
+
+})
+
+
+$(document).on("click", ".close-job", function(e) {
+  e.preventDefault();
+  $(".job-wrap").fadeOut("slow")
+})
+
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1096415291146672');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1096415291146672&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NT9XP24"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<video width="320" height="240" id="video" autoplay muted playsinline loop class="video">
+  <source src="fhm-video.mp4" type="video/mp4">
+</video>
+
 <section class="price" v-scope="Values({ initialCount: 1 })" @mounted="mounted" v-cloak>
 
       <div class="row text-on-brand text-center d-flex justify-content-center">
         <div class="col-md-2 values value-1">
           <div class="rounded py-2 bg-brand">
-            <h3 class="mb-0">${{price}}</h3>
+            <h3 class="mb-0"><a href="https://dexscreener.com/fantom/0xd77fc9c4074b56ecf80009744391942fbfddd88b" title="FantOHM Chart" target="_blank">${{price}}</a></h3>
             <p class="lead mb-0">Price</p>
           </div>
         </div>
         <div class="col-md-2 values value-2">
           <div class="rounded py-2 bg-brand">
-            <h3 class="mb-0">{{circulating_supply || '-'}}</h3>
+            <h3 class="mb-0">{{circulating_supply}}</h3>
             <p class="lead mb-0">Circulating supply</p>
           </div>
         </div>
@@ -68,85 +268,915 @@
 	<div class="container">
 
 		<div class="row">
-			<div class="col-12">
-				<ul>
-				<li><a href="https://discord.com/invite/6x2wHHVNpC" target="_blank"><span class="iconify" data-icon="akar-icons:discord-fill"></span></a></li>
-				<li><a href="https://t.me/fantohm" target="_blank"><span class="iconify" data-icon="bx:bxl-telegram"></span></a></li>
-				<li><a href="https://twitter.com/FantohmDAO" target="_blank"><span class="iconify" data-icon="akar-icons:twitter-fill"></span></a></li>
-				<li><a href="https://github.com/fantohm-dev" target="_blank"><span class="iconify" data-icon="akar-icons:github-fill"></span></span></a></li>
-				<li><a href="https://fantohm.gitbook.io/documentation/" target="_blank"><span class="iconify" data-icon="simple-icons:gitbook"></span></span></a></li>
-				</ul>
-			</div>
+      <div class="col-6 col-sm-7 col-md-8 head-links">
+        <ul>
+        <li><a href="https://discord.com/invite/6x2wHHVNpC" title="Discord" target="_blank"><span class="iconify" data-icon="akar-icons:discord-fill"></span></a></li>
+        <li class="noMD"><a href="https://t.me/fantohm" title="Telegram" target="_blank"><span class="iconify" data-icon="bx:bxl-telegram"></span></a></li>
+        <li><a href="https://twitter.com/FantohmDAO" title="Twitter" target="_blank"><span class="iconify" data-icon="akar-icons:twitter-fill"></span></a></li>
+        <li class="noMD"><a href="https://www.youtube.com/channel/UCa1eJEgcVnFhfLNdjw3yr4g" title="YouTube" target="_blank"><span class="iconify" data-icon="akar-icons:youtube-fill"></span></a></li>
+        <li class="noMD"><a href="https://instagram.com/fantohmdao" title="Instagram" target="_blank"><span class="iconify" data-icon="akar-icons:instagram-fill"></span></a></li>
+        <li><a href="https://vm.tiktok.com/ZSe9dcvP9/" title="TikTok" target="_blank"><span class="iconify" data-icon="cib:tiktok"></span></a></li>
+        <li><a href="https://medium.com/fantohm" title="Medium" target="_blank"><span class="iconify" data-icon="bi:medium"></span></a></li>
+        <li class="noSM"><a href="https://github.com/fantohm-dev" title="GitHub" target="_blank"><span class="iconify" data-icon="akar-icons:github-fill"></span></a></li>
+        <li class="noSM"><a href="https://fantohm.gitbook.io/documentation/" title="GitBook" target="_blank"><span class="iconify" data-icon="simple-icons:gitbook"></span></a></li>
+        
+        <li><a href="https://linktr.ee/fantohm" target="_blank" title="LinkTree"><span class="iconify" data-icon="simple-icons:linktree"></span></a></li>
+        <li class="noMD"><a href="mailto:team@fantohm.com" title="Contact us" target="_blank"><span class="iconify" data-icon="clarity:email-line"></span></a></li>
+
+ 
+
+       
+      
+        
+        </ul>
+      </div>
+      <div class="col-6 col-sm-5 col-md-4">
+        <div class="nav-wrap">
+        <div class="enter"><a href="https://app.fantohm.com/" class="button" title="FantOHM DAO - Enter App" >Enter App</a></div>
+        <div class="openNav">
+          <div>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </div>
+        </div>
+        <div class="nav-blank" style="display:none;">
+        <div class="navigation">
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#about">FantOHM DAO</a></li>
+          <li><a href="#security">Security</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#guides">Guides</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="#community">Community</a></li>
+        </ul>
+      </div>
+      <div class="quicklinks">
+        <ul>
+          <li><a href="https://github.com/fantohm-dev/fantohm-contracts/blob/main/audit/FantOHM_DAO_Spadetech.io_Audit_Nov_2021.pdf" class="button" target="_blank" title="FantOHM Audit">Audit</a></li>
+          <li><a href="https://github.com/fantohm-dev/fantohm-contracts/blob/main/docs/FantOHM-Business_and_Financial_Management_Model-Dec-2021.pdf" title="FantOHM DAO Whitepaper" class="button" target="_blank">Whitepaper</a></li>
+          <li><a href="https://fantohm.gitbook.io/documentation/" class="button" title="FantOHM DAO Docs" target="_blank">Docs</a></li>
+          <li><a href="fantohm-brandbook.pdf" title="FantOHM DAO - Brandbook and Identity" class="button" target="_blank">Identity</a></li>
+        </ul>
+      </div>
+    </div>
+    </div>
+      </div>
+			
 		</div>
 	</div>
 </section>
-<section class="hero">
+<section class="hero"  id="top">
 	<div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+  			<div class="logo animated" data-animate="fadeIn" data-delay="2.6">
+  				
+          <h2 class="glitch layers" data-text="logo.png"><span><img src="logo.png" alt="FantOHM DAO" /></span></h2>
+  			</div>
+      </div>
 
-			<div class="logo">
-				<img src="logo.png" />
-			</div>
-			<div>
-			<h2>The Decentralized Reserve Currency</h2>
-			<p>Fantohm is building a community-owned decentralized financial infrastructure to bring more stability and transparency for the world.</p>
-			<p>
-				<a href="https://app.fantohm.com/" class="button">Enter App</a> 	<a href="https://www.fantohm.com/fantohm-brandbook.pdf" class="button" target="_blank">Brandbook</a>
-			</p>
-
-		</div>
+      <div class="col-12 col-md-6 case-text">
+  			<div>
+          <h3>The FantOHM DAO Ecosystem</h3>
+    			<h1>The decentralized Reserve and Revenue Protocol</h1>
+    			<p>FantOHM DAO is an innovative multi-chain decentralized Reserve and Revenue Protocol with the mission of overcoming ever-increasing inflation and the limitations of traditional finance while generating a continuous stream of income for its investors.</p>
+  		  </div>
+        <div class="buttons">
+          <p>
+            <a href="https://app.fantohm.com/" title="FantOHM DAO - Enter App" class="button">Enter App</a>
+            <a href="https://github.com/fantohm-dev/fantohm-contracts/blob/main/docs/FantOHM-Business_and_Financial_Management_Model-Dec-2021.pdf" title="FantOHM DAO - Whitepaper" class="button white">Whitepaper</a>
+          </p>
+        </div>
+      </div>
 	</div>
+</div>
+</section>
+<section class="press">
+<div class="container">
+  <a href="https://www.nasdaq.com/press-release/crypto-defi-gets-a-unique-stablecoin-here-comes-the-fhud-2022-02-13-0" target="_blank"><img src="assets/press/nasdaq.png" /></a>
+  <a href="https://finance.yahoo.com/news/crypto-defi-gets-unique-stablecoin-220200796.html" target="_blank"><img src="assets/press/yahoo-finance.png" /></a>
+  <a href="https://www.bloomberg.com/press-releases/2022-02-13/crypto-defi-gets-a-unique-stablecoin-here-comes-the-fhud" target="_blank"><img src="assets/press/bloomberg.png" /></a>
+  <a href="https://www.newsbtc.com/press-releases/fhud-1-5-the-most-valuable-stablecoin-this-year/" target="_blank"><img src="assets/press/newsbtc.png" /></a>
+  <a href="https://blockonomi.com/fhud-1-5-the-most-valuable-stablecoin-this-year/" target="_blank"><img src="assets/press/blockonomi.png" /></a>
+  <a href="https://www.publish0x.com/press-releases/fhud-15-the-most-valuable-stablecoin-this-year-xmmvxpv" target="_blank"><img src="assets/press/publich0x.png" /></a>
+</div>
+</section>
+
+<section class="boxes">
+  <div class="container">
+    <div class="row row-wrap">
+      <div class="col-12 col-sm-6 col-md-6 col-xl-4">
+        <div class="box"><h3>Whitepaper</h3>
+            <p style="color:#222;">FantOHM DAO Operating and financial management model</p>
+            <a href="https://github.com/fantohm-dev/fantohm-contracts/blob/main/docs/FantOHM-Business_and_Financial_Management_Model-Dec-2021.pdf" title="FantOHM DAO Whitepaper" class="button white" target="_blank">Read whitepaper ›</a></div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 col-xl-4 del-1">
+        <div class="box"><h3>Audit</h3>
+            <p>November 26, 2021 - Spadetech.io FantOHM smartcontracts audit</p>
+            <a href="https://github.com/fantohm-dev/fantohm-contracts/blob/main/audit/FantOHM_DAO_Spadetech.io_Audit_Nov_2021.pdf" class="button white" title="FantOHM DAO - Audit" target="_blank">Read report ›</a></div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 col-xl-4 del-2">
+        <div class="box"><h3>Security</h3>
+            <p>Two layers of multisig protection: Fantom Safe and OpenZeppelin Defender</p>
+            <a href="#security" title="FantOHM DAO - Security" class="button white">Read more ›</a></div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 col-xl-4 del-3">
+        <div class="box"><h3>Guides</h3>
+            <p>Video guides of how to buy, stake, bond and bridge FHM token</p>
+            <a href="https://www.youtube.com/channel/UCa1eJEgcVnFhfLNdjw3yr4g" title="FantOHM DAO - Guides" class="button white" target="_blank">Watch guides ›</a></div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 col-xl-4 del-4">
+        <div class="box"><h3>Docs</h3>
+            <p>FantOHM is a fork of OHM written on Fantom Opera and based on FHM token</p>
+            <a href="https://fantohm.gitbook.io/documentation/" title="FantOHM DAO Documentation" class="button white" target="_blank">Read more ›</a>
+          </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-6 col-xl-4 del-5">
+        <div class="box">
+            <h3>Identity</h3>
+            <p>We want to make sure a cohesive brand design follows suit</p>
+            <a href="fantohm-brandbook.pdf" class="button white" title="FantOHM DAO - Brandbook" target="_blank">Read more ›</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 
-<section class="how-it-works">
-	<div class="container">
-		<div class="row row-wrap align-items">
-			<div class="col-12" style="text-align:center;">
-				<h2 class="big">How Fantohm works</h2>
-			</div>
-			<div class="col-6 order-1 align-middle">
-				<div class="content align-middle">
-					<h3><span>1</span>Treasury Revenue</h3>
-					<h2>Bonds & LP fees</h2>
-					<p>Bond sales and LP Fees increase Fantohm's Treasury Revenue and lock in liquidity and help control FHM supply</p>
-				</div>
 
-			</div>
-			<div class="col-6 order-2 content-img"><img src="ghost1.png" /></div>
-			<div class="col-6 order-4">
-				<div class="content">
-					<h3><span>2</span>Treasury Growth</h3>
-					<h2>Fantohm's Treasury</h2>
-					<p>Treasury inflow is used to increase Fantohm's Treasury Balance and back outstanding FHM tokens and regulate staking APY</p>
-				</div>
-			</div>
-			<div class="col-6 order-3 content-img"><img src="ghost2.png" /></div>
-			<div class="col-6 order-5">
-				<div class="content">
-					<h3><span>3</span>Staking Rewards</h3>
-					<h2>FHM Token</h2>
-					<p>Compounds yields automatically through a treasury backed coin with intrinsic value</p>
-				</div>
-			</div>
-			<div class="col-6 order-6 content-img"><img src="chost3.png" /></div>
-		</div>
-	</div>
+
+
+<section class="how-it-works section-area anim-section" id="about">
+  <div class="container">
+    
+    <div class="row row-wrap">
+      <div class="col-12 order-2 order-md-1">
+    <div class="slider-for">
+
+<!-- slide 0 -->
+      <div class="slide">
+        <div class="row row-wrap align-items">
+          <div class="col-12 desktop-dao">
+            <div class="content align-middle">
+              <h3>FantOHM DAO</h3>
+              <h2>Overview</h2>
+              <img src="dao-horizontal.png" alt="Overview - FantOHM DAO" />
+            </div>
+          </div>
+          <div class="col-12 mobile-dao">
+              
+            <div class="content align-middle">
+              <h3>FantOHM DAO</h3>
+              <h2>Overview</h2>
+              <img src="dao.png" alt="Overview - FantOHM DAO" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- slide 1 -->
+      <div class="slide">
+        <div class="row row-wrap align-items">
+          <div class="col-12 col-md-6 order-2 order-md-1 align-middle">
+            <div class="content align-middle">
+              <h3>FantOHM DAO</h3>
+              <h2>The Reserve Protocol</h2>
+              <p>At the heart of FantOHM DAO lies the Reserve Protocol, and its respective Treasuries, where we hold a mixture of risk free assets (MIM, DAI, USDC, etc) and non-stable assets that are selected for their value and growth potential.  The assets are the foundation of FHM and establish the book value per FHM.</p>
+
+<p>The Reserve Protocol gives incentive to investors by offering FHM tokens at a discount in exchange for assets which will get stored in our treasury or go into the Liquidity Pool. The treasury then mints new FHM tokens to give out to stakers, which beforehand bought FHM on an Exchange and then staked their tokens. This mechanism makes the supply of FHM tokens elastic and defines the book value and runway.
+</p>
+              <p><a href="https://fantohm.gitbook.io/documentation/" title="FantOHM DAO - Documentation" class="button" target="_blank">Read more ›</a></p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 order-1 order-md-2 content-img"><img src="protocol.png" alt="The Reserve Protocol" /></div>
+        </div>
+      </div>
+      
+      <!-- slide 2 -->
+      <div class="slide">
+        <div class="row row-wrap align-items">
+          <div class="col-12 col-md-6 order-2 order-md-1 align-middle">
+            <div class="content align-middle">
+              <h3>FHUD</h3>
+              <h2>The FHUD Stable-Coin</h2>
+              <p>With the addition of our own stable-coin, called FHUD, we found a way to further improve the FantOHM DAO Ecosystem. FHUD gives us the ability to invest the stable-coin holdings of the treasury into various assets and increasing the total profitability without changing the amount of risk-free assets:</p>
+
+<p>To create FHUD, we remove the FHM from the DAO operating account through a smart contract which burns the FHM forever while depositing a receipt token to the DAO treasury in the form of FHUD. This mechanism is called proof-of-burn and gives our FHUD token its value. We will then have the value of burned DAO operational funds sitting in the treasury in the form of untradeable FHUD, which allows us to take an equal amount of stable-coins and invest them into different assets for further profitability, while the TVL of the treasury stays unchanged.
+</p>
+              
+              <p><a href="https://medium.com/fantohm/fantohm-introduces-proof-of-burn-a-brand-new-way-to-generate-income-like-no-other-other-ohm-fork-a3038d4cb80e" class="button" target="_blank" title="The FHUD Stable-Coin">Read more ›</a></p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 order-1 order-md-2 content-img"><img src="fhud.png" alt="The FHUD Stable-Coin" /></div>
+        </div>
+      </div>
+
+
+      <!-- slide 3 -->
+      <div class="slide">
+        <div class="row row-wrap align-items">
+          <div class="col-12 col-md-6 order-2 oder-md-1 align-middle">
+            <div class="content align-middle">
+              <h3>Revenue</h3>
+              <h2>The FantOHM Revenue System</h2>
+              <p>The introduction of FHUD allows us to invest the stable-coins in our treasury in other various assets in order to increase the profitability and the value of the treasury. For this we have several Venture Capitalists and Financial Analysts with decades of experience in our strategy team that carefully decide in which assets to invest.</p>
+<p>Another soon-to-come branch of our revenue system will be loans, which will be implemented in the near future. The overall goal of our revenue system is to further grow the treasury which in return lengthens the runway and rises the book-value of FHM. This not only benefits our holders but also attracts new investors.</p>
+              <p><a href="https://medium.com/fantohm/fantohm-daos-treasury-operations-financial-management-in-plain-english-91b60b8af7c9" class="button" title="The FantOHM Revenue System" target="_blank">Read more ›</a></p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 order-1 order-md-2 content-img"><img src="revenue.png" alt="The FantOHM Revenue System" /></div>
+        </div>
+      </div>
+
+      <!-- slide 4 -->
+      <div class="slide">
+        <div class="row row-wrap align-items">
+          <div class="col-12 col-md-6 order-2 order-md-1 align-middle">
+            <div class="content align-middle">
+              <h3>Multi-Chain</h3>
+              <h2>Fantom and Moonriver</h2>
+              <p>FantOHM initially launched on the Fantom Network on October 29th 2021 and became one of the first multi-chain projects of its kind with the launch on the MoonRiver Parachain just two weeks later. We chose these networks on their potential for further growth and scalability.</p>
+<p>In order to become one of the leading cryptocurrency finance protocols we believe it is essential to be available on more than just one network, as this allows for further innovation and helps FantOHM to explore a wider array of markets.
+</p>
+                <p><a href="https://medium.com/fantohm/the-first-fantom-ohm-fork-to-go-cross-chain-fantohm-launches-on-moonriver-c970d8713c89" title="Multi-Chain" class="button" target="_blank">Read more ›</a></p>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 order-1 order-md-2 content-img"><img src="multichain.png" alt="Multichain - Fantom and Moonriver" /></div>
+        </div>
+      </div>
+
+
+    </div>
+</div>
+<div class="col-12 order-1 order-md-2">
+    <div class="slider-nav">
+      <div class="slide">
+        <div class="slide-nav">Overview</div>
+      </div>
+      <div class="slide">
+        <div class="slide-nav">Protocol</div>
+      </div>
+      <div class="slide">
+        <div class="slide-nav">Stable-Coin</div>
+      </div>
+      <div class="slide">
+        <div class="slide-nav">Revenue</div>
+      </div>
+      <div class="slide">
+        <div class="slide-nav">Multi-Chain</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 </section>
 
+<section class="section-area sec-area" id="security">
+  <div class="container">
+    <div class="row row-wrap">
+      <div class="col-12 col-md-6 order-2 order-md-1 sec del-1" style="text-align:left;">
+        <h3>Security & Efficiency</h3>
+        <h2>Two layers of Multisig Protection</h2>
+        <p>The FantOHM DAO was moved to multisig shortly after launch to significantly mitigate security risks as no single stakeholder can execute transactions and all transactions are double-checked by at least 3 stakeholders. There are two layers to the multisig protection, Fantom Safe and OpenZeppelin Defender. The former is the Gnosis implementation on Fantom, and the latter is a secure platform to expand the capabilities of multisig operation. </p>
+        <p>The DAO  is guarded by a 3 of 5 multisig policy, any transaction to make changes to the DAO must be approved by at least 3 out of 5 owners within the multisig policy.</p>
+        <p>
+            
+            <a href="https://medium.com/fantohm/security-efficiency-fantohm-adds-two-layers-of-multisig-protection-5ef7fc16125e" target="_blank" title="FantOHM Multisig" class="button ">Read more ›</a>
+        </p>
+      </div>
+      <div class="col-12 col-md-6 order-1 order-md-2 sec del-3">
+        <div class="security">
+          <img src="security.png" alt="Two layers of Multisig Protection" />
+        </div>
+      </div>
+    </div>
+    <div class="row sec del-5">
+      <div class="col-12">
+        <div class="multisig">
+            <h3>Multisig</h3>
+            <h2>Owners</h2>
+            <div class="row">
+              <div class="col-6 col-md-five">
+                <img src="pwntron.png" alt="pwntr0n" />
+                <h3>pwntr0n</h3>
+                <p>FantOHM, Lead developer</p>
+              </div>
+              <div class="col-6 col-md-five">
+                <img src="kanan.png" alt="Kanan" />
+                <h3>Kanan</h3>
+                <p>FantOHM, Web developer and designer</p>
+              </div>
+              <div class="col-6 col-md-five">
+                <img src="rayne.png" alt="Rayne" />
+                <h3>Rayne</h3>
+                <p>Marketing specialist</p>
+              </div>
+              <div class="col-6 col-md-five">
+                <img src="atomic.png" alt="AtomicSwap" />
+                <h3>AtomicSwap</h3>
+                <p>KuramaDAO</p>
+              </div>
+              <div class="col-12 col-md-five">
+                <img src="sleepyneko.png" alt="Sleepy Neko" />
+                <h3>Sleepy Neko</h3>
+                <p>Trusted Shiba Inu Community Member (Previous Mod), SuperMod/Multisig (Diatom), Moderator (OtterClam)</p>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-12 sig" style="margin-top:20px; text-align:center;">
+              <a href="https://gnosis-safe.io/app/eth:0x66a98CfCd5A0dCB4E578089E1D89134A3124F0b1/balances" target="_blank" class="button grey" title="FantOHM - ETH Safe">ETH Safe ›</a> 
+              <a href="https://safe.fantom.network/#/safes/0x34F93b12cA2e13C6E64f45cFA36EABADD0bA30fC/balances" target="_blank" class="button grey" title="FantOHM - FTM Safe">FTM Safe ›</a> 
+              <a href="https://multisig.moonbeam.network/mriver:0xE3CD5475f18a97D3563307B4e1A6467470237927/balances" target="_blank" class="button grey" title="FantOHM - MOVR Safe">MOVR Safe ›</a> 
+              <a href="https://gnosis-safe.io/app/bnb:0x3538Acb37Cf5a92eBE7091714975b2f8dDd5c6C1/balances" target="_blank" class="button grey" title="FantOHM BSC Safe">BSC Safe ›</a> 
 
-<section class="community">
+              
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="roadmap section-area" id="roadmap">
+  <div class="container">
+    <div class="row row-wrap">
+      <div class="col-12">
+        <h3>FantOHM DAO Development</h3>
+        <h2>Roadmap 2022</h2>
+      </div>
+    </div>
+    <h4>January</h4>
+    <div class="row-group">
+      <div class="row row-wrap road-area">
+        <div class="col-6"></div>
+        <div class="col-6 road-content-right">
+          <div class="road-inner ready">
+            <img src="analytics.png" alt="DAO Analytics dashboard" /><br/>Analytics Dashboard</div>
+        </div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6 road-content-left">
+          <div class="road-inner">
+            <img src="zap.png" alt="One click zap" /><br/>One Click Zap</div>
+        </div>
+        <div class="col-6"></div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6"></div>
+        <div class="col-6 road-content-right">
+          <div class="road-inner">
+            <img src="44.png" alt="wsFHM Wrapped Staked FHM" /><br/>wsFHM + 4,4
+<p>wsFHM = Wrapped Staked FHM is a means to wrap your staked token so collecting rebases is made easier. This allows for the collecting of rebases automatically and also mitigates tax liabilities in some countries as rebases are viewed as income. Therefore it wraps it into one single investment.</p>
+          </div>
+        </div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6 road-content-left">
+          <div class="road-inner">
+            <img src="33.png" alt="Staking" /><br/>FIP-000x<br/>(3,3 Staking options)
+<p>Multiple staking options which will allow users the opportunity to pick the investment option that best suits them.</p>
+          </div>
+        </div>
+        <div class="col-6"></div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6"></div>
+        <div class="col-6 road-content-right">
+          <div class="road-inner">
+            <img src="lock.png" alt="Lock" /><br/>To be announced</div>
+        </div>
+      </div>
+    </div>
+
+
+    <h4>February</h4>
+    <div class="row-group">
+      <div class="row row-wrap road-area">
+        <div class="col-6 road-content-left">
+          <div class="road-inner">
+            <img src="99.png" alt="9 9 Lending" /><br/>Roll out 9,9<br/>(Without <span class="blur">Beep Boop Beep</span>)
+            <p>A unique adaptation to the protocol that allows lending but not in the conventional way.</p></div>
+        </div>
+        <div class="col-6"></div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6"></div>
+        <div class="col-6 road-content-right">
+          <div class="road-inner">
+            <img src="fhud-icon.png" alt="FHUD Phase 2" /><br/>Phase 2<p>
+            Further implementation of advancements and developments with our stable coin.</p></div>
+        </div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6 road-content-left">
+          <div class="road-inner">
+            <img src="chain.png" alt="Cross-chain" /><br/>Cross-Chain - <span class="blur">Beep Boop Beep</span>
+            <p>An exciting expansion to reach more of the global crypto space.</p></div>
+        </div>
+        <div class="col-6"></div>
+      </div>
+    </div>
+
+    <h4>March</h4>
+    <div class="row-group">
+      <div class="row row-wrap road-area">
+        <div class="col-6"></div>
+        <div class="col-6 road-content-right">
+          <div class="road-inner">
+            <img src="treasury.png" alt="Treasury diversification" /><br/>Treasury Diversification
+            <p>Treasury diversification is necessary to grow the architecture of what will be a massive opportunity via creative investment strategies inside and outside the crypto space.</p></div>
+        </div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6 road-content-left">
+          <div class="road-inner">
+            <img src="lending.png" alt="Lending and borrowing" /><br/>Lending / Borrowing
+            <p>Different lending structures to the traditional 9,9 or further lending/borrowing options than 9,9.</p></div>
+        </div>
+        <div class="col-6"></div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6"></div>
+        <div class="col-6 road-content-right">
+          <div class="road-inner">
+            <img src="chain.png" alt="Cross-Chain" /><br/>Cross-Chain - <span class="blur">Beep Boop Beep</span>
+            <p>An exciting expansion to reach more of the global crypto space.</p></div>
+        </div>
+      </div>
+      <div class="row row-wrap road-area">
+        <div class="col-6 road-content-left">
+          <div class="road-inner">
+            <img src="lock.png" alt="Lock" /><br/>To be announced</div>
+        </div>
+        <div class="col-6"></div>
+      </div>
+    </div>
+
+
+
+  </div>
+</section>
+
+<section class="career section-area" id="careers">
+  <div class="container">
+    <div class="row row-wrap">
+      <div class="col-12">
+        <h3>Careers</h3>
+        <h2>Open positions</h2>
+      </div>
+
+      <!-- Storyboard Artist -->
+      <div class="col-12 col-sm-6">
+        <div class="box">
+          <h3>Storyboard Artist</h3>
+            <p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM.</p>
+            <a href="#" class="button req">Requirements ›</a><a href="https://forms.gle/8d4spUsAEeWGsWWK9" class="button white" target="_blank">Apply now ›</a>
+          </div>
+          <div class="job-wrap" style="display:none">
+
+            <div class="job-content">
+              <div class="close-job"></div>
+              <div class="job-inner">
+                <h3>Open position</h3>
+              <h2>Storyboard Artist</h2>
+              <p>FantOHM is a global algorithmic reserve currency, serving a greater mission to accelerate cryptocurrency adoption and increase the freedom of money. Are you looking to be a part of the most influential DAO in the blockchain industry and contribute to the crypto-currency revolution that is changing the world?</p>
+
+<p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM. This is a full-time position that can be remote from any location and timezone (APAC/EMEA are preferred).</p>
+
+<h3>Responsibilities</h3>
+<ul>
+  <li>Build and add to the present brand narrative in ways that create a sense of inclusion, safety, transparency, and spooky fun</li>
+  <li>Meet with creative supervisors to discuss objectives of storyboard; what is desired or to be achieved</li>
+  <li>Create storyboards by implementing storytelling objectives</li>
+  <li>Follow instructions of creative supervisors</li>
+  <li>Address any problems with creative supervisors; ask necessary questions</li>
+  <li>Communicate progress of work to creative supervisors and to appropriate production staff</li>
+  <li>Ensure quality and style of show is consistently achieved in storyboard work</li>
+  <li>Follow accurate document management requirements (i.e., file naming and storage) according to the production’s guidelines</li>
+  <li>Meet all respective deadlines and complete work in timely manner</li>
+  <li>Attend and contribute to stand-up meetings</li>
+  <li>Maybe be required to pitch Storyboards</li>
+
+</ul>
+
+<h3>Requirements</h3>
+<ul>
+  <li>Understands DeFi 2.0 in a functional, if not technical sense</li>
+  <li>Minimum 2 year storyboard experience and/or training on a similar show; or equivalent combination of education and experience</li>
+  <li>Is creative and skilled with metaphor as a tool for education and marketing</li>
+  <li>Love filmmaking and telling stories</li>
+  <li>Have +2 years of experience as a storyboard artist</li>
+  <li>Know how to deliver tight work, even under tight deadlines</li>
+  <li>Have world-class storyboard skills</li>
+  <li>Have a good eye for perspective and strong foundational drawing skills</li>
+  <li>Comfortable with drawing scenes with multiple characters</li>
+  <li>Strong knowledge of visual storytelling</li>
+  <li>Attention to detail is as fine as your line work</li>
+  <li>Strong understanding of camera techniques and principles</li>
+  <li>Self-motivated team player who tops technical artistry with strong social skills</li>
+  <li>Thrives in a team environment with weekly brainstorming sessions</li>
+
+</ul>
+
+<h3>Working at FantOHM</h3>
+<ul>
+  <li>Do something meaningful; Be a part of the future of finance</li>
+  <li>Fast moving, challenging and unique business problems</li>
+  <li>International work environment and flat organization</li>
+  <li>Open culture in a creative organization active in a dynamic growth market</li>
+  <li>Remote job, flexible working hours, casual work attire</li>
+  <li>Highly competitive salary and benefits</li>
+</li>
+</ul>
+</div>
+              <div class="apply"><a href="https://forms.gle/8d4spUsAEeWGsWWK9" class="button" target="_blank" title="FantOHM - Storyboard Artist">Apply now ›</a></div>
+            </div>
+
+          </div>
+      </div>
+
+
+      <!-- 2D/3D Animator -->
+      <div class="col-12 col-sm-6">
+        <div class="box">
+          <h3>2D/3D Animator</h3>
+            <p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM.</p>
+            <a href="#" class="button req">Requirements ›</a><a href="https://forms.gle/BjUbeoRkDqu1pL6X9" class="button white" target="_blank">Apply now ›</a>
+          </div>
+          <div class="job-wrap" style="display:none">
+
+            <div class="job-content">
+              <div class="close-job"></div>
+              <div class="job-inner">
+                <h3>Open position</h3>
+              <h2>2D/3D Animator</h2>
+              <p>FantOHM is a global algorithmic reserve currency, serving a greater mission to accelerate cryptocurrency adoption and increase the freedom of money. Are you looking to be a part of the most influential DAO in the blockchain industry and contribute to the crypto-currency revolution that is changing the world?</p>
+
+<p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM. This is a full-time position that can be remote from any location and timezone (APAC/EMEA are preferred).</p>
+
+<h3>Responsibilities</h3>
+<ul>
+  <li>A demonstration reel that showcases a strong understanding of the principles of animation</li>
+  <li>3+ years of industry experience as an Animator within a Maya based or similar pipeline</li>
+  <li>Excellent communication skills to facilitate team dynamics and iteration on the feedback from Marketing team</li>
+  <li>A self motivated artist with a great team-player attitude that is passionate about animation</li>
+  <li>Attend and contribute to stand-up meetings</li>
+</ul>
+
+<h3>Requirements</h3>
+<ul>
+  <li>Understands DeFi 2.0 in a functional, if not technical sense</li>
+  <li>Have good knowledge of animation and video editing skills</li>
+  <li>Demonstration of various styles from realistic to snappy pose-to-pose character animation using techniques including key frame and motion capture</li>
+  <li>An ability to communicate visually through drawings or paintovers</li>
+  <li>A passion for games and visual storytelling</li>
+  <li>Never satisfied with work that is “good enough”</li>
+  <li>Please send a link to your latest demo reel and any applicable materials</li>
+</ul>
+
+<h3>Working at FantOHM</h3>
+<ul>
+  <li>Do something meaningful; Be a part of the future of finance</li>
+  <li>Fast moving, challenging and unique business problems</li>
+  <li>International work environment and flat organization</li>
+  <li>Open culture in a creative organization active in a dynamic growth market</li>
+  <li>Remote job, flexible working hours, casual work attire</li>
+  <li>Highly competitive salary and benefits</li>
+</ul>
+</div>
+              <div class="apply"><a href="https://forms.gle/BjUbeoRkDqu1pL6X9" class="button" target="_blank" title="FantOHM - 2D/3D Animator">Apply now ›</a></div>
+            </div>
+
+          </div>
+      </div>
+
+
+      <!-- Copywriter / Social Media Experience Plus -->
+      <div class="col-12 col-sm-6">
+        <div class="box">
+          <h3>Copywriter / Social Media Experience Plus</h3>
+            <p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM.</p>
+            <a href="#" class="button req">Requirements ›</a><a href="https://forms.gle/VRVcQmwitZgBD1J99" class="button white" target="_blank">Apply now ›</a>
+          </div>
+          <div class="job-wrap" style="display:none">
+
+            <div class="job-content">
+              <div class="close-job"></div>
+              <div class="job-inner">
+                <h3>Open position</h3>
+              <h2>Copywriter / Social Media Experience Plus</h2>
+              <p>FantOHM is a global algorithmic reserve currency, serving a greater mission to accelerate cryptocurrency adoption and increase the freedom of money. Are you looking to be a part of the most influential DAO in the blockchain industry and contribute to the crypto-currency revolution that is changing the world?</p>
+
+<p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM. This is a full-time position that can be remote from any location and timezone (APAC/EMEA are preferred).</p>
+
+<h3>Responsibilities</h3>
+<ul>
+  <li>Write compelling, informed, polished content to support our marketing efforts and position us further as an industry leader</li>
+  <li>Create content with a strong commercial focus across several channels and formats such as social media, video, website, email, blog, brochures, reports, product documentation, marketing</li>
+  <li>Work with the content and digital teams, and external agencies to increase our visibility and drive engagements across all social media platforms and targeted traffic to our site with optimized web copy</li>
+  <li>Partner with internal and external stakeholders and design partners from kickoff to delivery – being diligent with details and deadlines</li>
+  <li>Research and curate background information, data, audience insights, and newsworthy information to be used throughout content</li>
+  <li>Set clear goals and analyze the impact of content, applying insights and digital marketing content best practices</li>
+  <li>Deliver consistent, high-value content that adheres to FantOHM content guidelines</li>
+  <li>Analyze different types of content, reporting their effectiveness, and adjusting your strategy systematically</li>
+  <li>Managing our external marketing partners and co-creating new campaigns with them also creating content for our delivery networks</li>
+  <li>Attend and contribute to stand-up meetings</li>
+</ul>
+
+<h3>Requirements</h3>
+<ul>
+  <li>Understands DeFi 2.0 in a functional, if not technical sense.</li>
+  <li>You have extensive experience in digital marketing & communication and with (online/SEO) copywriting.</li>
+  <li>Must have relatable marketing or financial education experience.</li>
+  <li>You are a team player with excellent communication skills.</li>
+  <li>You work meticulously and have an eye for detail.</li>
+  <li>Proficiency in English is required</li>
+  <li>Results- and solutions-oriented</li>
+  <li>Strong time management and organizational abilities</li>
+  <li>Works within deadlines of 2-3 days with active guidance from the team where content requires information.</li>
+</ul>
+
+<h3>Working at FantOHM</h3>
+<ul>
+  <li>Do something meaningful; Be a part of the future of finance</li>
+  <li>Fast moving, challenging and unique business problems</li>
+  <li>International work environment and flat organization</li>
+  <li>Open culture in a creative organization active in a dynamic growth market</li>
+  <li>Remote job, flexible working hours, casual work attire</li>
+  <li>Highly competitive salary and benefits</li>
+</ul>
+</div>
+              <div class="apply"><a href="https://forms.gle/VRVcQmwitZgBD1J99" class="button" target="_blank" title="FantOHM - Copywriter / Social Media Experience Plus">Apply now ›</a></div>
+            </div>
+
+          </div>
+      </div>
+
+
+
+      <!-- Digital Brand Ambassador -->
+      <div class="col-12 col-sm-6">
+        <div class="box">
+          <h3>Digital Brand Ambassador (Youtube, Twitter) / Defi Experience Plus</h3>
+            <p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM.</p>
+            <a href="#" class="button req">Requirements ›</a><a href="https://forms.gle/zYGLwXFPYNTVJBUg6" class="button white" target="_blank">Apply now ›</a>
+          </div>
+          <div class="job-wrap" style="display:none">
+
+            <div class="job-content">
+              <div class="close-job"></div>
+              <div class="job-inner">
+                <h3>Open position</h3>
+              <h2>Digital Brand Ambassador (Youtube, Twitter) / Defi Experience Plus</h2>
+              <p>FantOHM is a global algorithmic reserve currency, serving a greater mission to accelerate cryptocurrency adoption and increase the freedom of money. Are you looking to be a part of the most influential DAO in the blockchain industry and contribute to the crypto-currency revolution that is changing the world?</p>
+
+<p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM. This is a full-time position that can be remote from any location and timezone (APAC/EMEA are preferred).</p>
+
+<h3>Responsibilities</h3>
+<ul>
+  <li>Able to conduct and lead online marketing activities</li>
+  <li>Has a good feeling for creative design, and be able to articulate to our design team to create visuals</li>
+  <li>Management, planning and scheduling of social media content/ posts</li>
+  <li>You get energy from interacting with customers on our social channels</li>
+  <li>Able to work independently as well as in a team and good at coordinating and planning own work</li>
+  <li>Able to supervise product activation events</li>
+  <li>Experience in working on PR / influencer campaigns</li>
+  <li>Stay up to date with opportunities available in DeFi projects and able to field and filter the available options</li>
+  <li>Work on marketing analytics and achieve respective growth KPIs for each platform</li>
+  <li>Interact with FantOHM community to increase positive engagement across our social media channels, platforms, and chat groups</li>
+  <li>Establish go-to-market engagements for feature launches, major listings, and new market entry</li>
+  <li>Attend and contribute to stand-up meetings</li>
+
+</ul>
+
+<h3>Requirements</h3>
+<ul>
+  <li>Understands DeFi 2.0 in a functional, if not technical sense</li>
+  <li>2+ years of experience in all major social media c hannels especially twitter/youtube</li>
+  <li>Follow the latest trends in social media closely</li>
+  <li>Creative with images (photo and video)</li>
+  <li>Understands the algorithm of social media platforms (youtube, twitter) and has a proven track record of growth and engagement on building these communities</li>
+  <li>You have a good empathy and know how to speak to our (potential) customers in the right way</li>
+  <li>Ambition drives you and you never stop learning!</li>
+  <li>Superb leadership, communication, and collaboration abilities: e.g. self-starter, proactive.</li>
+  <li>Proficiency in English is required</li>
+  <li>Results- and solutions-oriented</li>
+  <li>Strong time management and organizational abilities</li>
+
+</ul>
+
+<h3>Working at FantOHM</h3>
+<ul>
+  <li>Do something meaningful; Be a part of the future of finance</li>
+  <li>Fast moving, challenging and unique business problems</li>
+  <li>International work environment and flat organization</li>
+  <li>Open culture in a creative organization active in a dynamic growth market</li>
+  <li>Remote job, flexible working hours, casual work attire</li>
+  <li>Highly competitive salary and benefits</li>
+</ul>
+</div>
+              <div class="apply"><a href="https://forms.gle/zYGLwXFPYNTVJBUg6" class="button" target="_blank" title="FantOHM - Digital Brand Ambassador (Youtube, Twitter) / Defi Experience Plus">Apply now ›</a></div>
+            </div>
+
+          </div>
+      </div>
+
+
+      <!-- Marketing Executive -->
+      <div class="col-12 col-sm-6">
+        <div class="box">
+          <h3>Marketing Executive</h3>
+            <p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM.</p>
+            <a href="#" class="button req">Requirements ›</a><a href="https://forms.gle/b5BW3PCdii5Z2mrJ8" class="button white" target="_blank">Apply now ›</a>
+          </div>
+          <div class="job-wrap" style="display:none">
+
+            <div class="job-content">
+              <div class="close-job"></div>
+              <div class="job-inner">
+                <h3>Open position</h3>
+              <h2>Marketing Executive</h2>
+              <p>FantOHM is a global algorithmic reserve currency, serving a greater mission to accelerate cryptocurrency adoption and increase the freedom of money. Are you looking to be a part of the most influential DAO in the blockchain industry and contribute to the crypto-currency revolution that is changing the world?</p>
+
+<p>We are looking for talented individuals who are willing to take up the challenge, innovate in a green field technology space and grow with FantOHM. This is a full-time position that can be remote from any location and timezone (APAC/EMEA are preferred).</p>
+
+<h3>Responsibilities</h3>
+<ul>
+  <li>Conduct online marketing activities</li>
+  <li>Supervise product activation events</li>
+  <li>Work on PR / influencer campaigns</li>
+  <li>Stays up to date with on opportunities available in for DeFi projects and able to field and filter the available options</li>
+  <li>Conduct marketing research on multiple Dapp protocols, and provide advanced vision about the industry</li>
+  <li>Work on marketing analytics and achieving respective KPIs</li>
+  <li>Interact with FantOHM community to increase positive engagement across our social media channels, platforms, and chat groups</li>
+  <li>Establish go-to-market strategy for feature launches, major listings, and new market entry</li>
+</ul>
+
+<h3>Requirements</h3>
+<ul>
+  <li>Understands DeFi 2.0 in a functional, if not technical sense</li>
+  <li>2+ years of experience in a similar role where you created and owned the marketing strategy and execution from the ground up</li>
+  <li>Proficiency in digital marketing</li>
+  <li>Extensive knowledge of marketing strategies and channels</li>
+  <li>Superb leadership, communication, and collaboration abilities: e.g. self-starter, proactive</li>
+  <li>Proficiency in English is required</li>
+  <li>Results- and solutions-oriented</li>
+  <li>Strong time management and organizational abilities</li>
+  <li>Attend and contribute to stand-up meetings</li>
+</ul>
+
+<h3>Working at FantOHM</h3>
+<ul>
+  <li>Do something meaningful; Be a part of the future of finance</li>
+  <li>Fast moving, challenging and unique business problems</li>
+  <li>International work environment and flat organization</li>
+  <li>Open culture in a creative organization active in a dynamic growth market</li>
+  <li>Remote job, flexible working hours, casual work attire</li>
+  <li>Highly competitive salary and benefits</li>
+</ul>
+</div>
+              <div class="apply"><a href="https://forms.gle/b5BW3PCdii5Z2mrJ8" class="button" target="_blank" title="FantOHM - Marketing Executive">Apply now ›</a></div>
+            </div>
+
+          </div>
+      </div>
+
+
+      <!-- Solidity developer -->
+      <div class="col-12 col-sm-6">
+        <div class="box">
+          <h3>Solidity developer</h3>
+            <p>We are looking for a Smart Contract Developer to design/build secure and reliable dApps on blockchain.</p>
+            <a href="#" class="button req">Requirements ›</a><a href="https://docs.google.com/forms/d/1p2blYnZXuODlEWGG3Lj7AJTeS1ib9dYGoiEioCf3vdc" class="button white" target="_blank">Apply now ›</a>
+          </div>
+          <div class="job-wrap" style="display:none">
+
+            <div class="job-content">
+              <div class="close-job"></div>
+              <div class="job-inner">
+                <h3>Open position</h3>
+              <h2>Solidity developer</h2>
+              <p>FantOHM is a global algorithmic reserve currency, serving a greater mission to accelerate cryptocurrency adoption and increase the freedom of money.</p>
+
+<p>Are you looking to be a part of the most influential company in the blockchain industry and contribute to the crypto-currency revolution that is changing the world?</p>
+
+<p>We are looking for a Smart Contract Developer to design/build secure and reliable dApps on blockchain.</p>
+
+<p>This is a full-time position that can be remote from any location and timezone (APAC/EMEA preference).</p>
+
+<h3>Responsibilities</h3>
+<ul>
+  <li>Design/implement secure and reliable apps in Solidity</li>
+  <li>Writing good documentation and giving tech support to the community</li>
+  <li>Internal quality control and audit of smart contracts</li>
+  <li>Research multiple dapp protocols, provide advanced vision about the industry </li>
+</ul>
+
+<h3>Requirements</h3>
+<ul>
+  <li>2+ years of relevant experience as a Smart Contract Developer</li>
+<li>Solid experience in delivering resilient and secure code in Solidity</li>
+<li>Knowledge and experience of the test-driven development</li>
+<li>Well understanding of the Blockchain technologies, especially Ethereum</li>
+<li>Familiar with the common Smart Contract vulnerabilities</li>
+<li>Solid understanding about Ethereum infrastructure, e.g. like Gnosis, TheGraph </li>
+</ul>
+
+<h3>Working at FantOHM</h3>
+<ul>
+  <li>Do something meaningful; Be a part of the future of finance technology</li>
+  <li>Fast moving, challenging and unique business problems</li>
+  <li>International work environment and flat organisation</li>
+  <li>Great career development opportunities in a growing company</li>
+  <li>Remote job, flexible working hours, casual work attire</li>
+</ul>
+</div>
+              <div class="apply"><a href="https://docs.google.com/forms/d/1p2blYnZXuODlEWGG3Lj7AJTeS1ib9dYGoiEioCf3vdc" class="button" target="_blank" title="FantOHM - Solidity Developer">Apply now ›</a></div>
+            </div>
+
+          </div>
+      </div>
+
+
+
+      <div class="col-12 col-sm-6">
+        <div class="box">
+          <h3>Open application</h3>
+            <p>We are constantly looking for committed and professional people to join us.</p>
+            <a href="https://docs.google.com/forms/d/1rgjF74gsf4nK7jrRrEYvIjL4b-Y1TVRxkIvvZFWaAJo" title="FantOHM - Open application" class="button white" target="_blank">Fill form ›</a>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="buy section-area" id="guides">
+  <div class="container">
+    <h3>Guides</h3>
+    <h2>How to FantOHM</h2>
+    <div class="row buy-section">
+      <div class="col-12 col-md-4 buy-area">
+
+        <p><img src="fantom.png" alt="Fantom Network" /><span class="x"></span><img src="spooky.png" alt="SpookySwap" /></p>
+        <h3>Fantom Network</h3>
+        <h2>Buy on SpookySwap</h2>
+        <div class="links">
+            <a href="https://spookyswap.finance/swap?inputCurrency=0x8D11eC38a3EB5E956B052f67Da8Bdc9bef8Abf3E&outputCurrency=0xfa1FBb8Ef55A4855E5688C0eE13aC3f202486286" target="_blank" title="Buy FHM" class="button">Buy now</a>
+            <a href="https://www.youtube.com/watch?v=M7BHjiVRNco" title="How to buy FHM" class="button">How to buy</a>
+        </div>
+      </div>
+       <div class="col-12 col-md-4 buy-area">
+        <div class="bridge-area">
+       <span class="bridge1"></span>
+       <span class="bridge"><a href="https://bridge.wanchain.org/" class="button" title="Bridge FHM">Bridge</a><br><a href="https://www.youtube.com/watch?v=M1W__wKqss4" target="_blank" class="white" title="How to Bridge FantOHM">How to bridge?</a></span>
+       <span class="bridge2"></span>
+     </div>
+       </div>
+      <div class="col-12 col-md-4 buy-area">
+       <p><img src="moonriver.jpeg" alt="Moonriver Network" /><span class="x"></span><img src="huckleberry.png" alt="HuckleBerry Swap" /></p>
+         <h3>Moonriver Network</h3>
+        <h2>Buy on HuckleBerry</h2>
+        <div class="links">
+            <a href="https://www.huckleberry.finance/#/swap?inputCurrency=0x748134b5f553f2bcbd78c6826de99a70274bdeb3&outputCurrency=0xfa1FBb8Ef55A4855E5688C0eE13aC3f202486286" title="Buy FHM" class="button">Buy now</a>
+            <a href="https://www.youtube.com/watch?v=TGoJ_N2DW4w" title="How to buy FantOHM" class="button">How to buy</a>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:40px;">
+    <a href="https://www.youtube.com/channel/UCa1eJEgcVnFhfLNdjw3yr4g" target="_blank" title="FantOHM Guides" class="button white">More guides ›</a></p>
+  </div>
+</section>
+
+<section class="community" id="community">
 	<div class="container">
 
 		<div class="row row-wrap join">
-			<div class="col-12" style="text-align:center;">
-				<h2 class="big">Join our community</h2>
-			</div>
-			<div class="col-12 social">
-				<a href="https://discord.com/invite/6x2wHHVNpC" target="_blank"><span class="iconify" data-icon="akar-icons:discord-fill"></span></a>
-				<a href="https://t.me/fantohm" target="_blank"><span class="iconify" data-icon="bx:bxl-telegram"></span></a>
-				<a href="https://twitter.com/FantohmDAO" target="_blank"><span class="iconify" data-icon="akar-icons:twitter-fill"></span></a>
-				<a href="https://github.com/fantohm-dev" target="_blank"><span class="iconify" data-icon="akar-icons:github-fill"></span></span></a>
-				<a href="https://fantohm.gitbook.io/documentation/" target="_blank"><span class="iconify" data-icon="simple-icons:gitbook"></span></span></a>
+      <div class="col-12">
+          <div class="social">
+          <div class="social-area">
+            <a href="https://discord.com/invite/6x2wHHVNpC" title="FantOHM - Discord" target="_blank"><span class="iconify" data-icon="akar-icons:discord-fill"></span></a>
+            <a href="https://t.me/fantohm" target="_blank" title="FantOHM - Telegram"><span class="iconify" data-icon="bx:bxl-telegram"></span></a>
+          <a href="https://twitter.com/FantohmDAO" target="_blank" title="FantOHM - Twitter"><span class="iconify" data-icon="akar-icons:twitter-fill"></span></a>
+          <a href="https://instagram.com/fantohmdao" target="_blank" title="FantOHM - Instagram"><span class="iconify" data-icon="akar-icons:instagram-fill"></span></a>
+        <a href="https://vm.tiktok.com/ZSe9dcvP9/" target="_blank" title="FantOHM - TikTok"><span class="iconify" data-icon="cib:tiktok"></span></a>
+        <a href="https://medium.com/fantohm" target="_blank" title="FantOHM - Medium"><span class="iconify" data-icon="bi:medium"></span></a>
+             <a href="https://www.youtube.com/channel/UCa1eJEgcVnFhfLNdjw3yr4g" title="FantOHM - YouTube" target="_blank"><span class="iconify" data-icon="akar-icons:youtube-fill"></span></a>
+          <a href="https://github.com/fantohm-dev" target="_blank" title="FantOHM - GitHub"><span class="iconify" data-icon="akar-icons:github-fill"></span></a>
+            <a href="https://fantohm.gitbook.io/documentation/" target="_blank" title="FantOHM - GitBoook"><span class="iconify" data-icon="simple-icons:gitbook"></span></a>
+            
+
+        
+        <a href="https://linktr.ee/fantohm" target="_blank" title="FantOHM - LinkTree"><span class="iconify" data-icon="simple-icons:linktree"></span></a>
+        <a href="mailto:team@fantohm.com" class="noMD" target="_blank" title="FantOHM - Contact us"><span class="iconify" data-icon="clarity:email-line"></span></a>
+
+          </div>
+        </div>
+      </div>
 			</div>
 		</div>
 	</div>
@@ -365,6 +1395,5 @@ createApp({
   Values
 }).mount()
 </script>
-
 </body>
 </html>
